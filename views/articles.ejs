@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<div class="row">
+
+    <ul >
+        <% articles.forEach(function (article) { %>
+        <div class="col s4 offset-m4 ">
+            <label for="title" class="collection-header"><%= article.author %></label>
+            <li class="collection-item" name="title">
+                <a href="/articles/<%= article._id %>"><%= article.title %></a>
+                <a class="right red darken-1 btn btn-danger delete-article" data-id="<%= article._id %>"
+                   href="#">Delete</a>
+                <a class="right btn" href="/articles/<%= article._id %>">Edit</a>
+
+            </li>
+        </div>
+        <% }) %>
+    </ul>
+</div>
+
+
+<% include partials/footer %>

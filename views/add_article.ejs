@@ -1,0 +1,36 @@
+<% include partials/header %>
+
+
+
+<div class="container center">
+
+    <form action="/articles/add" method="POST">
+        <div class="row col s6">
+            <h1>Add Article</h1>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <label for="title">Name</label>
+                <input type="text" name="title">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <label for="author">Author</label>
+                <input type="text" name="author">
+            </div>
+        </div>
+        <div class="row">
+            <div class="input-field col s6">
+                <label for="body">Body</label>
+                <input type="text" name="body">
+            </div>
+        </div>
+        <div class="row">
+            <button class="btn waves-effect waves-light btn-large col s6" type="submit" >Submit</button>
+        </div>
+    </form>
+</div>
+
+
+<% include partials/footer %>

@@ -1,0 +1,43 @@
+<html>
+<head>
+    <title><%=title%></title>
+    <!--Font-->
+    <link rel="stylesheet" href="/styles/css/all.css">
+    <!--Materialize-->
+    <link rel="stylesheet" href="/styles/css/materialize.css">
+
+    <script src="/js/jquery-2.2.4.js"></script>
+    <script src="/js/materialize.js"></script>
+    <!--Main Script-->
+</head>
+<body>
+<script src="/js/main.js"></script>
+<nav>
+    <div class="nav-wrapper">
+        <a href="/" class="brand-logo center">Logo</a>
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+        <ul class="left hide-on-med-and-down">
+            <li><a href="/">Home</a></li>
+            <li><a href="/articles/add">Add Article</a></li>
+        </ul>
+    </div>
+</nav>
+
+<ul class="sidenav" id="mobile-demo">
+    <li><a href="/">Home</a></li>
+    <li><a href="/articles/add">Add Article</a></li>
+</ul>
+<%- messages('message', locals) %>
+<%if(errors) {%>
+<%for( var key in errors.mapped()) {%>
+<div class="row">
+    <div class="col s4 offset-m4 center">
+        <div id="card-alert" class="card red lighten-5">
+            <div class="card-content green-text">
+                <p><%= errors.mapped()[key].msg %></p>
+            </div>
+        </div>
+    </div>
+</div>
+<% }%>
+<%}%>

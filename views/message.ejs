@@ -1,0 +1,32 @@
+<script>
+    var status = null;
+</script>
+
+<!--<div id="messages">-->
+    <!--<% Object.keys(messages).forEach(function (type) { %>-->
+    <!--<ul class="<%= type %>">-->
+        <!--<% messages[type].forEach(function (message) { %>-->
+        <!--<li><%= message %></li>-->
+        <!--<% }) %>-->
+    <!--</ul>-->
+    <!--<% }) %>-->
+<!--</div>-->
+
+
+<div id="messages">
+    <% Object.keys(messages).forEach(function (type) { %>
+        <%if(type=='success') {%>
+            <%messages[type].forEach(function(message){%>
+                <div class="row">
+                    <div class="col s4 offset-m4 center">
+                        <div id="card-alert" class="card green lighten-5">
+                            <div class="card-content green-text">
+                                <p><%= message %></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <% })%>
+        <%} %>
+        <% }) %>
+</div>
