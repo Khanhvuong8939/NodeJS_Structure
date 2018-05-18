@@ -1,0 +1,33 @@
+<% include partials/header %>
+
+<div class="container center">
+    <h4>Register</h4>
+    <div id="register-page" class="row center">
+        <div class="col s6 z-depth-6 card-panel offset-m3">
+            <form class="register-form" action="/users/register" method="post">
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="username">Name</label>
+                        <input type="text" name="username">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <label for="password">Password</label>
+                        <input type="password" name="password">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <button type="submit" class="btn waves-effect waves-light col s12">Login</button>
+                    </div>
+                    <div class="input-field col s12">
+                        <p class="margin center medium-small sign-up">If you does not have an account? <a
+                                    href="/users/register">Register</a></p>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% include partials/footer %>

@@ -1,6 +1,6 @@
 <html>
 <head>
-    <title><%=title%></title>
+    <title><%= title %></title>
     <!--Font-->
     <link rel="stylesheet" href="/styles/css/all.css">
     <!--Materialize-->
@@ -13,13 +13,19 @@
 <body>
 <script src="/js/main.js"></script>
 <nav>
-    <div class="nav-wrapper">
-        <a href="/" class="brand-logo center">Logo</a>
-        <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
-        <ul class="left hide-on-med-and-down">
-            <li><a href="/">Home</a></li>
-            <li><a href="/articles/add">Add Article</a></li>
-        </ul>
+    <div class="container">
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo center">Logo</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul class="left hide-on-med-and-down">
+                <li><a href="/">Home</a></li>
+                <li><a href="/articles/add">Add Article</a></li>
+            </ul>
+            <ul class="right hide-on-med-and-down">
+                <li><a href="/#">Register</a></li>
+                <li><a href="/#">Login</a></li>
+            </ul>
+        </div>
     </div>
 </nav>
 
@@ -28,8 +34,8 @@
     <li><a href="/articles/add">Add Article</a></li>
 </ul>
 <%- messages('message', locals) %>
-<%if(errors) {%>
-<%for( var key in errors.mapped()) {%>
+<% if(errors) { %>
+<% for( var key in errors.mapped()) { %>
 <div class="row">
     <div class="col s4 offset-m4 center">
         <div id="card-alert" class="card red lighten-5">
@@ -39,5 +45,5 @@
         </div>
     </div>
 </div>
-<% }%>
-<%}%>
+<% } %>
+<% } %>
