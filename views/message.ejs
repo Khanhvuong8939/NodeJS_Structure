@@ -13,20 +13,44 @@
 <!--</div>-->
 
 
+<!--<div id="messages">-->
+    <!--<% Object.keys(messages).forEach(function (type) { %>-->
+        <!--<%if(type=='success') {%>-->
+            <!--<%messages[type].forEach(function(message){%>-->
+                <!--<div class="row">-->
+                    <!--<div class="col s4 offset-m4 center">-->
+                        <!--<div id="card-alert" class="card green lighten-5">-->
+                            <!--<div class="card-content green-text">-->
+                                <!--<p><%= message %></p>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--<% })%>-->
+        <!--<%} else {%>-->
+            <!--<%messages[type].forEach(function(message){%>-->
+            <!--<div class="row">-->
+                <!--<div class="alert alert-<%= type%>">-->
+                    <!--<p><%= message %></p>-->
+                <!--</div>-->
+            <!--</div>-->
+
+    <!--<% })%>-->
+        <!--<%}%>-->
+        <!--<% }) %>-->
+<!--</div>-->
 <div id="messages">
     <% Object.keys(messages).forEach(function (type) { %>
-        <%if(type=='success') {%>
-            <%messages[type].forEach(function(message){%>
-                <div class="row">
-                    <div class="col s4 offset-m4 center">
-                        <div id="card-alert" class="card green lighten-5">
-                            <div class="card-content green-text">
-                                <p><%= message %></p>
-                            </div>
-                        </div>
+    <%messages[type].forEach(function(message){%>
+        <div class="row">
+            <div class="col s4 offset-m4 center">
+                <div class="card card-content">
+                    <div class="alert alert-<%=type%>">
+                        <p><%= message %></p>
                     </div>
                 </div>
-            <% })%>
-        <%} %>
-        <% }) %>
+            </div>
+        </div>
+    <% })%>
+    <% }) %>
 </div>

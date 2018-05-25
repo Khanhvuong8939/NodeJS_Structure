@@ -7,13 +7,13 @@ let Article = require('../models/article')
 //Express Validator
 const { check, validationResult } = require('express-validator/check');
 
-router.get('/add', function (req, res) {
+router.get('/add', ensureAuthenticated, function (req, res) {
     res.render('add_article', {
         title: 'Add Article'
     })
 });
 
-router.post('/add', [
+router.post('/add', ensureAuthenticated, [
         check('title').isLength({min:2}).withMessage('title must be greater than 2 chars'),
         check('author').isLength({min:2}).withMessage('author be greater than 2 chars'),
         check('body').isLength({min:2}).withMessage('body be greater than 2 chars')
@@ -49,7 +49,7 @@ router.post('/add', [
 
 );
 
-router.get('/:id', function (req, res) {
+router.get('/:id',ensureAuthenticated, function (req, res) {
     Article.findById(req.params.id, function (err, article) {
         if (err) {
             console.log(err);
@@ -62,7 +62,7 @@ router.get('/:id', function (req, res) {
     })
 });
 
-router.post('/edit/:id', function (req, res) {
+router.post('/edit/:id', ensureAuthenticated, function (req, res) {
     console.log('Edit id: ' + req.params.id);
     let article = {};
     article.title = req.body.title;
@@ -79,7 +79,7 @@ router.post('/edit/:id', function (req, res) {
     })
 });
 
-router.delete('/:id', function (req, res) {
+router.delete('/:id',ensureAuthenticated, function (req, res) {
     let query = {_id: req.params.id};
 
     Article.remove(query, function (err) {
@@ -89,5 +89,15 @@ router.delete('/:id', function (req, res) {
     });
     console.log('deleting id: ' + req.params.id);
 });
+
+// Access control
+function ensureAuthenticated(req, res, next){
+    if(req.isAuthenticated()){
+        return next();
+    } else {
+        req.flash('danger', 'Please login');
+        res.redirect('/users/login')
+    }
+}
 
 module.exports = router;

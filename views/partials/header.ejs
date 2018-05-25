@@ -6,6 +6,9 @@
     <!--Materialize-->
     <link rel="stylesheet" href="/styles/css/materialize.css">
 
+    <!--Style-->
+    <link rel="stylesheet" href="/styles/css/style.css">
+
     <script src="/js/jquery-2.2.4.js"></script>
     <script src="/js/materialize.js"></script>
     <!--Main Script-->
@@ -19,11 +22,18 @@
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="left hide-on-med-and-down">
                 <li><a href="/">Home</a></li>
-                <li><a href="/articles/add">Add Article</a></li>
+                <%if(user){%>
+                    <li><a href="/articles/add">Add Article</a></li>
+                <%}%>
+
             </ul>
             <ul class="right hide-on-med-and-down">
-                <li><a href="/#">Register</a></li>
-                <li><a href="/#">Login</a></li>
+                <%if(user){%>
+                    <li><a href="/users/logout">Logout</a></li>
+                <%} else {%>
+                    <li><a href="/users/register">Register</a></li>
+                    <li><a href="/users/login">Login</a></li>
+                <%}%>
             </ul>
         </div>
     </div>

@@ -1,6 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
+const passport = require('passport');
+
 // Bring in Article Model
 let User = require('../models/user');
 
@@ -15,11 +17,21 @@ router.get('/register', function (req, res) {
     });
 });
 
+//Login Form
 router.get('/login', function (req, res) {
-    console.log('user login');
     res.render('login', {
         title: 'Login'
     });
+});
+
+//Login process
+//TODO: Need to check null(username/password)
+router.post('/login', function (req, res, next) {
+    passport.authenticate('local', {
+        successRedirect: '/',
+        failureRedirect: '/users/login',
+        failureFlash: true
+    })(req, res, next);
 });
 
 router.post('/register', [
@@ -71,8 +83,10 @@ router.post('/register', [
 
 });
 
-router.get('/login/:id', function(req, res){
-
+router.get('/logout', function(req, res){
+    req.logout();
+    req.flash('success', 'You are logged out');
+    res.redirect('/users/login');
 });
 
 

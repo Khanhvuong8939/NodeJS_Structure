@@ -4,6 +4,9 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const session = require('express-session');
+const config = require('./config/database');
+const passport = require('passport');
+
 const expressValidator = require('express-validator');
 //Express Validator
 const { check, validationResult } = require('express-validator/check');
@@ -17,7 +20,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Mongoose connect mongodb
-mongoose.connect('mongodb://localhost/nodejs');
+mongoose.connect(config.database);
 let db = mongoose.connection;
 
 // Check db connection
@@ -54,6 +57,17 @@ app.use(function (req, res, next) {
 
 //Express Validator
 app.use(expressValidator());
+
+// Passport config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.get('*', function(req, res, next){
+    res.locals.user = req.user || null;
+    next();
+})
 
 //Bring in model:
 let Article = require('./models/article');
